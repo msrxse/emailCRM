@@ -1,20 +1,19 @@
-import { Button } from "@/components/ui/button";
+"use client";
 import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+  EmailForm,
+  EmailFormValues,
+} from "@/features/email/components/email-form";
 
-export default function Home() {
+export default function LandingPage() {
+  const sendEmail = (values: EmailFormValues): void => {
+    console.log(values);
+  };
+
   return (
-    <div className="flex border border-red-800 h-full">
-      <h1>Hello World!</h1>
+    <div className="flex h-screen w-full items-center justify-center">
+      <div className="flex flex-col w-[50%]">
+        <EmailForm onSubmit={sendEmail} />
+      </div>
     </div>
   );
 }
