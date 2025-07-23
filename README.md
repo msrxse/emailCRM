@@ -1,6 +1,6 @@
 # emailCRM
 
-This full stack app will include Next.js, TypeScript, Tailwind CSS, ShadCN/ui, a dockerized Postgres DB, Drizzle ORM, Hono, Zod, [auth.js](https://authjs.dev), react-hook-form, and TanStack Query.
+This full stack app will include Next.js, TypeScript, Tailwind CSS, ShadCN/ui, a dockerized Postgres DB, Drizzle ORM, [Hono](https://github.com/honojs/middleware/tree/main/packages/auth-js), Zod, [auth.js](https://authjs.dev), react-hook-form, and TanStack Query.
 
 ## Getting Started
 
