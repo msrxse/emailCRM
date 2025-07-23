@@ -1,6 +1,9 @@
 import { LoginWrapper } from "@/features/auth/components/login-wrapper";
+import { redirectAuthenticated } from "@/features/auth/utils";
 
-const LoginPage = () => {
+const LoginPage = async () => {
+  await redirectAuthenticated();
+
   return (
     <div className={`bg-[url(/hero.svg)] bg-cover bg-top flex flex-col h-full`}>
       <div className="flex flex-col h-screen w-full items-center justify-center z-[4]">

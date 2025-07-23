@@ -1,5 +1,6 @@
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
+import { LoginButton } from "@/features/auth/components/login-button";
 import Link from "next/link";
 
 export const Navbar = () => {
@@ -8,9 +9,7 @@ export const Navbar = () => {
       <div className="md:max-w-screen-2xl mx-auto flex items-center w-full justify-between">
         <Logo />
         <div className="space-x-4 md:block md:w-auto flex items-center justify-between w-full">
-          <Button size="sm" variant="outline" asChild>
-            <Link href="/login">Login</Link>
-          </Button>
+          <LoginButton />
           <Button size="sm" asChild>
             <Link href="/sign-up">Get EmailCRM for free</Link>
           </Button>

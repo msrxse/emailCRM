@@ -1,8 +1,12 @@
-import { HomeAudienceSummaryCard } from "@/app/(platform)/home/_components/home-audience-summary-card";
-import { HomeCampaignSummaryCard } from "@/app/(platform)/home/_components/home-campaign-summary-card";
-import { HomePlatformHeader } from "@/app/(platform)/home/_components/home-platform-header";
+import { protectPage } from "@/features/auth/utils";
 
-export default function HomePage() {
+import { HomeAudienceSummaryCard } from "./_components/home-audience-summary-card";
+import { HomeCampaignSummaryCard } from "./_components/home-campaign-summary-card";
+import { HomePlatformHeader } from "./_components/home-platform-header";
+
+export default async function HomePage() {
+  await protectPage();
+
   return (
     <div className="flex flex-col h-full w-full md:pl-[300px]">
       <HomePlatformHeader />

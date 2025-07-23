@@ -1,11 +1,11 @@
-"use client";
-
-import { cn } from "@/lib/utils";
 import { Poppins } from "next/font/google";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { Medal } from "lucide-react";
 import localFont from "next/font/local";
+
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { redirectAuthenticated } from "@/features/auth/utils";
 
 const headingFont = localFont({
   src: "../../../public/fonts/font.woff2",
@@ -16,7 +16,9 @@ const textFont = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
-export default function LandingPage() {
+export default async function LandingPage() {
+  await redirectAuthenticated();
+
   return (
     <div className="flex h-screen w-full items-center justify-center flex-col">
       <div
