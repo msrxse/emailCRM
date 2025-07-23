@@ -8,10 +8,15 @@ const headingFont = localFont({
   src: "../../public/fonts/font.woff2",
 });
 
-export const Logo = () => {
+export const Logo = ({ classnames }: { classnames?: string }) => {
   return (
     <Link href="/">
-      <div className="hover:opacity-75 transition items-center gap-x-2 hidden md:flex">
+      <div
+        className={cn(
+          "hover:opacity-75 transition items-center gap-x-2 hidden md:flex",
+          classnames
+        )}
+      >
         <Image
           src="/logo.svg"
           alt="Logo"

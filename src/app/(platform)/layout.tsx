@@ -1,13 +1,11 @@
+import { PlatformSidebar } from "@/app/(platform)/_components/platform-sidebar";
 import { ReactNode } from "react";
 
-const MarketingLayout = ({ children }: { children: ReactNode }) => {
-  return (
-    <div className="bg-slate-100">
-      <main className="flex h-screen w-full items-center justify-center bg-slate-100">
-        {children}
-      </main>
-    </div>
-  );
-};
+const PlatformLayout = ({ children }: { children: ReactNode }) => (
+  <main className="flex h-screen w-full items-center justify-center bg-slate-100">
+    <PlatformSidebar />
+    {children}
+  </main>
+);
 
-export default MarketingLayout;
+export default PlatformLayout;

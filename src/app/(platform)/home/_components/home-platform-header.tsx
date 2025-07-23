@@ -10,12 +10,13 @@ export const HomePlatformHeader = () => {
   return (
     <PlatformHeader>
       <div className="flex items-center justify-between gap-x-2 w-full">
-        <h1 className="lg:text-xl text-2xl">Home</h1>
+        <h1 className="text-xl lg:text-md">Home</h1>
         <div className="flex gap-x-2">
-          <Button onClick={() => router.push("/campaigns/new")}>
+          <Button size="sm" onClick={() => router.push("/campaigns/new")}>
             New Campaign
           </Button>
           <Button
+            size="sm"
             onClick={() => router.push("/contacts/add")}
             variant={"outline"}
           >
