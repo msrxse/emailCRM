@@ -88,3 +88,7 @@ SELECT * FROM tickets; // press q to exit
 exit // to exit the docker container prompt
 
 ```
+
+Notes:
+
+- [See this link for all psql commands](https://tomcam.github.io/postgres/)
