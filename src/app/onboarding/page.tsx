@@ -1,13 +1,10 @@
-import ProtectPageWrapper from "@/features/auth/components/protect-page-wrapper";
+import { OnboardingContents } from "@/app/onboarding/_components/onboarding-content";
+import { protectPage } from "@/features/auth/utils";
 
-const OnboardingPage = () => {
-  return (
-    <ProtectPageWrapper>
-      <div>
-        <h1 className="text-2xl">Onboarding Page</h1>
-      </div>
-    </ProtectPageWrapper>
-  );
+const OnboardingPage = async () => {
+  await protectPage();
+
+  return <OnboardingContents />;
 };
 
 export default OnboardingPage;

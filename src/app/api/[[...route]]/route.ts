@@ -7,6 +7,7 @@ import { authConfig } from "@/app/auth";
 import { AuthConfig, initAuthConfig } from "@hono/auth-js";
 
 import test from "./test";
+import orgs from "./orgs";
 
 const getAuthConfig = (c: Context): AuthConfig => ({
   ...authConfig,
@@ -39,7 +40,7 @@ app.use("*", async (c, next) => {
 
 app.use("*", initAuthConfig(getAuthConfig));
 
-const routes = app.route("/test", test);
+const routes = app.route("/test", test).route("/orgs", orgs);
 
 export const GET = handle(app);
 export const POST = handle(app);

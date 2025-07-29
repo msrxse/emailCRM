@@ -2,11 +2,12 @@ import { auth } from "@/app/auth";
 import { redirect } from "next/navigation";
 
 /**
- *
  * Generic wrapper for protecting pages.
- * Instead of checking for session in each page,
- * you can use this wrapper to protect pages, which allows
- * pages to be server rendered. (no async)
+ * You can use this wrapper to protect pages instead
+ * of the async protectPage() function.
+ *
+ * Because protectPage() is async and you
+ * cannot mix client components with async functions)
  */
 export const ProtectPageWrapper = async ({
   children,

@@ -5,6 +5,8 @@ import {
   boolean,
   integer,
 } from "drizzle-orm/pg-core";
+import { createInsertSchema } from "drizzle-zod";
+
 import { users } from "./auth-schema";
 
 export const Orgs = pgTable("orgs", {
@@ -20,6 +22,8 @@ export const Orgs = pgTable("orgs", {
   addressZip: text("address_zip").notNull(),
   addressCountry: text("address_country").notNull(),
 });
+
+export const insertOrgsSchema = createInsertSchema(Orgs);
 
 export const OrgsLimitations = pgTable("orgs_limitations", {
   createdAt: timestamp("created_at").default(new Date()).notNull(),

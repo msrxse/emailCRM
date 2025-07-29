@@ -17,6 +17,9 @@ importers:
       '@hono/auth-js':
         specifier: ^1.1.0
         version: 1.1.0(@auth/core@0.40.0)(hono@4.8.5)(react@19.1.0)
+      '@hono/zod-validator':
+        specifier: ^0.7.2
+        version: 0.7.2(hono@4.8.5)(zod@4.0.5)
       '@hookform/resolvers':
         specifier: ^5.1.1
         version: 5.1.1(react-hook-form@7.60.0(react@19.1.0))
@@ -50,6 +53,9 @@ importers:
       drizzle-orm:
         specifier: ^0.44.3
         version: 0.44.3(@types/pg@8.15.4)(pg@8.16.3)(postgres@3.4.7)
+      drizzle-zod:
+        specifier: ^0.8.2
+        version: 0.8.2(drizzle-orm@0.44.3(@types/pg@8.15.4)(pg@8.16.3)(postgres@3.4.7))(zod@4.0.5)
       hono:
         specifier: ^4.8.5
         version: 4.8.5
@@ -522,6 +528,12 @@ packages:
       '@auth/core': '>=0.35.0'
       hono: '>=3.0.0'
       react: ^18 || ^19 || ^19.0.0-rc
+
+  '@hono/zod-validator@0.7.2':
+    resolution: {integrity: sha512-ub5eL/NeZ4eLZawu78JpW/J+dugDAYhwqUIdp9KYScI6PZECij4Hx4UsrthlEUutqDDhPwRI0MscUfNkvn/mqQ==}
+    peerDependencies:
+      hono: '>=3.9.0'
+      zod: ^3.25.0 || ^4.0.0
 
   '@hookform/resolvers@5.1.1':
     resolution: {integrity: sha512-J/NVING3LMAEvexJkyTLjruSm7aOFx7QX21pzkiJfMoNG0wl5aFEjLTl7ay7IQb9EWY6AkrBy7tHL2Alijpdcg==}
@@ -1674,6 +1686,12 @@ packages:
         optional: true
       sqlite3:
         optional: true
+
+  drizzle-zod@0.8.2:
+    resolution: {integrity: sha512-9Do/16OjFFNrQDZgvMtxtDDwKWbFOxUAIwNPKX98SfxrP8H18vhN1BvNXbhelLcdgCE7GEaXDJqBjMExSkhpkA==}
+    peerDependencies:
+      drizzle-orm: '>=0.36.0'
+      zod: ^3.25.1
 
   dunder-proto@1.0.1:
     resolution: {integrity: sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==}
@@ -3150,6 +3168,11 @@ snapshots:
       hono: 4.8.5
       react: 19.1.0
 
+  '@hono/zod-validator@0.7.2(hono@4.8.5)(zod@4.0.5)':
+    dependencies:
+      hono: 4.8.5
+      zod: 4.0.5
+
   '@hookform/resolvers@5.1.1(react-hook-form@7.60.0(react@19.1.0))':
     dependencies:
       '@standard-schema/utils': 0.3.0
@@ -4124,6 +4147,11 @@ snapshots:
       '@types/pg': 8.15.4
       pg: 8.16.3
       postgres: 3.4.7
+
+  drizzle-zod@0.8.2(drizzle-orm@0.44.3(@types/pg@8.15.4)(pg@8.16.3)(postgres@3.4.7))(zod@4.0.5):
+    dependencies:
+      drizzle-orm: 0.44.3(@types/pg@8.15.4)(pg@8.16.3)(postgres@3.4.7)
+      zod: 4.0.5
 
   dunder-proto@1.0.1:
     dependencies:
