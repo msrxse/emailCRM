@@ -11,6 +11,9 @@ export const redirectAuthenticated = async () => {
   return null;
 };
 
+/**
+ * Use <ProtectPageWrapper/> rather
+ */
 export const protectPage = async () => {
   const session = await auth();
 
