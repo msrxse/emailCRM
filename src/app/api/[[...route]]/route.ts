@@ -8,8 +8,6 @@ import { AuthConfig, initAuthConfig } from "@hono/auth-js";
 
 import test from "./test";
 
-console.log("AUTH_SECRET:", process.env.AUTH_SECRET);
-
 const getAuthConfig = (c: Context): AuthConfig => ({
   ...authConfig,
   secret: c.env.AUTH_SECRET,
