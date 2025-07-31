@@ -12,11 +12,11 @@ import { users } from "./auth-schema";
 export const Orgs = pgTable("orgs", {
   createdAt: timestamp("created_at").default(new Date()).notNull(),
   id: text("id").notNull().primaryKey(),
-  imageUrl: text("image_url").notNull(),
+  imageUrl: text("image_url").default(""),
   name: text("name").notNull(),
   updatedAt: timestamp("updated_at").default(new Date()).notNull(),
   addressStreet: text("address_street").notNull(),
-  addressStreet2: text("address_street2").notNull(),
+  addressStreet2: text("address_street2").default(""),
   addressCity: text("address_city").notNull(),
   addressState: text("address_state").notNull(),
   addressZip: text("address_zip").notNull(),

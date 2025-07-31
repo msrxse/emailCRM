@@ -9,6 +9,8 @@ import { BusinessInfoStep } from "./business-info-step";
 import type { BusinessInfoFormValues } from "./business-info-step";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useCreateNewOrg } from "@/features/orgs/api/use-create-new-org";
+import { v4 as uuidv4 } from "uuid";
 
 enum OnboardingStep {
   BusinessInfo,
@@ -17,6 +19,7 @@ enum OnboardingStep {
 
 export const OnboardingContents = () => {
   const router = useRouter();
+  const createOrgMutation = useCreateNewOrg();
   const [currentStep, setCurrentStep] = useState(OnboardingStep.BusinessInfo);
   const [orgInfo, setOrgInfo] = useState<BusinessInfoFormValues | null>(null);
 
@@ -27,9 +30,17 @@ export const OnboardingContents = () => {
   const onSubmitAllBusinessInfo = (
     addressValues: BusinessAddressFormValues
   ) => {
-    console.log(orgInfo);
-
-    console.log(addressValues);
+    if (!orgInfo) return;
+    return createOrgMutation.mutate(
+      {
+        ...orgInfo,
+        ...addressValues,
+        id: uuidv4(),
+      },
+      {
+        onSuccess: () => router.push("/home"),
+      }
+    );
   };
 
   const renderStep = () => {

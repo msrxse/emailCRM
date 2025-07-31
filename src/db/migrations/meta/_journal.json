@@ -15,6 +15,13 @@
       "when": 1753799505100,
       "tag": "0001_rare_absorbing_man",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1753963422914,
+      "tag": "0002_cloudy_virginia_dare",
+      "breakpoints": true
     }
   ]
 }

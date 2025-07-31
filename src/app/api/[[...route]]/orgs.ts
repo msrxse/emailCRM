@@ -4,7 +4,8 @@ import { zValidator } from "@hono/zod-validator";
 import { verifyAuth } from "@hono/auth-js";
 
 import { db } from "@/db";
-import { insertOrgsSchema, Orgs } from "@/db/org-schema";
+import { insertOrgsSchema, Orgs, UserOrgs } from "@/db/org-schema";
+import { and, eq, inArray } from "drizzle-orm";
 
 const app = new Hono()
   .get("/", verifyAuth(), async (c) => {
@@ -14,7 +15,19 @@ const app = new Hono()
       return c.json({ error: "Unauthorized" }, 401);
     }
 
-    const orgs = await db.query.Orgs.findMany();
+    const userOrgs = await db.query.UserOrgs.findMany({
+      where: eq(UserOrgs.userId, user.id),
+    });
+
+    if (userOrgs.length === 0)
+      return c.json({ error: "User has no orgs" }, 403);
+
+    const orgs = await db.query.Orgs.findMany({
+      where: inArray(
+        Orgs.id,
+        userOrgs.map((uo) => uo.orgId)
+      ),
+    });
 
     return c.json({ data: { orgs } });
   })
@@ -36,8 +49,21 @@ const app = new Hono()
       const { id } = c.req.valid("param");
       if (!id) return c.json({ error: "Invalid id" }, 400);
 
+      const userOrgs = await db.query.UserOrgs.findMany({
+        where: eq(UserOrgs.userId, user.id),
+      });
+
+      if (userOrgs.length === 0)
+        return c.json({ error: "User has no orgs" }, 403);
+
       const org = await db.query.Orgs.findFirst({
-        where: (org, { eq }) => eq(org.id, id),
+        where: and(
+          eq(Orgs.id, id),
+          inArray(
+            Orgs.id,
+            userOrgs.map((uo) => uo.orgId)
+          )
+        ),
       });
 
       if (!org) {
@@ -48,11 +74,12 @@ const app = new Hono()
     }
   )
   .post("/", verifyAuth(), zValidator("json", insertOrgsSchema), async (c) => {
-    const user = c.get("authUser");
+    const { user } = c.get("authUser");
 
     if (!user) {
       return c.json({ error: "Unauthorized" }, 401);
     }
+
     const json = c.req.valid("json");
 
     // If you wanted to return the org
@@ -65,7 +92,17 @@ const app = new Hono()
     // if (orgs.length === orgsLength.length)
     //   return c.json({ error: "Org not created" }, 500);
 
+    const orgs = await db.query.Orgs.findMany();
+    if (orgs.length > 0 && orgs.find((o) => o.id === json.id))
+      return c.json({ error: "Org already exists" }, 400);
+
     await db.insert(Orgs).values(json);
+
+    await db.insert(UserOrgs).values({
+      isPrimary: true,
+      orgId: json.id,
+      userId: user.id,
+    });
 
     return c.json({ message: "Org created" });
   });
