@@ -1,7 +1,10 @@
 "use client";
 
 import { ArrowLeft } from "lucide-react";
-import { BusinessAddressStep } from "./business-address-step";
+import {
+  BusinessAddressFormValues,
+  BusinessAddressStep,
+} from "./business-address-step";
 import { BusinessInfoStep } from "./business-info-step";
 import type { BusinessInfoFormValues } from "./business-info-step";
 import { useRouter } from "next/navigation";
@@ -21,12 +24,20 @@ export const OnboardingContents = () => {
     setOrgInfo(businessValues);
     setCurrentStep(OnboardingStep.BusinessAddress);
   };
+  const onSubmitAllBusinessInfo = (
+    addressValues: BusinessAddressFormValues
+  ) => {
+    console.log(orgInfo);
+
+    console.log(addressValues);
+  };
+
   const renderStep = () => {
     switch (currentStep) {
       case OnboardingStep.BusinessInfo:
         return (
           <div className="h-screen flex flex-col gay-y-2 items-center w-full bg-slate-100">
-            <div className="h-14 px-4 relative flex items-center justify-center w-full border-b shadow-sm bg-white">
+            <div className="h-14 px-4 relative flex items-center justify-center w-full border-b shadow-sm bg-white flex-shrink-0">
               <ArrowLeft
                 className="absolute left-4 top-4"
                 onClick={() => router.push("/home")}
@@ -48,8 +59,8 @@ export const OnboardingContents = () => {
         break;
       case OnboardingStep.BusinessAddress:
         return (
-          <div className="h-screen flex flex-col gay-y-2 items-center w-full bg-slate-100 ">
-            <div className="relative h-14 px-4  flex items-center justify-center w-full border-b shadow-sm bg-white">
+          <div className="h-screen flex flex-col gay-y-2 items-center w-full bg-slate-100">
+            <div className="h-14 px-4 relative flex items-center justify-center w-full border-b shadow-sm bg-white flex-shrink-0">
               <ArrowLeft
                 className="absolute left-4 top-4"
                 onClick={() => setCurrentStep(OnboardingStep.BusinessInfo)}
@@ -76,7 +87,7 @@ export const OnboardingContents = () => {
                 addressCountry: "",
                 addressZip: "",
               }}
-              onSubmit={() => {}}
+              onSubmit={onSubmitAllBusinessInfo}
             />
             <div className="text-sm md:text-xl text-neutral-400 mt-4 max-w-xs md:max-w-2xl text-center mx-auto">
               Your business address will be appended to the bottom of every

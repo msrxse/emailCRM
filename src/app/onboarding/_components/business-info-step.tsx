@@ -85,36 +85,41 @@ export const BusinessInfoStep = ({
               />
             </div>
           )}
+          {/* Here we fake uploadthing where the user should be able to 
+          upload an image and its url send as part of this form data values */}
           <FormField
             control={form.control}
             name="imageUrl"
             render={() => (
-              <FormItem className="flex flex-col w-full justify-center items-center">
-                <FormLabel className="self-start">
-                  {uploadedPhotoUrl
-                    ? "Business Logo"
-                    : "Add a Logo for your Business"}
-                </FormLabel>
-                <FormControl>
-                  <Button
-                    className={
-                      hasUploadedImage
-                        ? "bg-emerald-500 border-2 font-medium hover:bg-emerald-400 text-md w-full"
-                        : "bg-sky-500 rounded-sm font-medium hover:bg-sky-400 border-2 text-md w-full"
-                    }
-                    disabled={disabled || hasUploadedImage}
-                    onClick={() => {
-                      setHasUploadedImage(true);
-                      setUploadedPhotoUrl("/globe.svg");
-                    }}
-                  >
-                    {hasUploadedImage
-                      ? "Logo Uploaded!"
-                      : "Upload Logo (Optional)"}
-                  </Button>
-                </FormControl>
-                <FormDescription>Images up to 16MB, max 2</FormDescription>
-              </FormItem>
+              <>
+                <FormItem className="flex flex-col w-full justify-center items-center">
+                  <FormLabel className="self-start">
+                    {uploadedPhotoUrl
+                      ? "Business Logo"
+                      : "Add a Logo for your Business"}
+                  </FormLabel>
+                  <FormControl>
+                    <Button
+                      className={
+                        hasUploadedImage
+                          ? "bg-emerald-500 border-2 font-medium hover:bg-emerald-400 text-md w-full"
+                          : "bg-sky-500 rounded-sm font-medium hover:bg-sky-400 border-2 text-md w-full"
+                      }
+                      disabled={disabled || hasUploadedImage}
+                      onClick={() => {
+                        setHasUploadedImage(true);
+                        setUploadedPhotoUrl("/globe.svg");
+                        form.setValue("imageUrl", "/globe.svg"); // <-- sync with React Hook Form
+                      }}
+                    >
+                      {hasUploadedImage
+                        ? "Logo Uploaded!"
+                        : "Upload Logo (Optional)"}
+                    </Button>
+                  </FormControl>
+                  <FormDescription>Images up to 16MB, max 2</FormDescription>
+                </FormItem>
+              </>
             )}
           />
           <Button
