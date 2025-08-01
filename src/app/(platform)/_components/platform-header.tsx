@@ -1,4 +1,7 @@
-import { UserButton } from "@/features/auth/components/user-button";
+import {
+  UserButton,
+  UserButtonSkeleton,
+} from "@/features/auth/components/user-button";
 
 export const PlatformHeader = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -12,3 +15,16 @@ export const PlatformHeader = ({ children }: { children: React.ReactNode }) => {
     </div>
   );
 };
+
+export const PlatformHeaderSkeleton = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => (
+  <div className="flex h-14 items-center p-4 w-full">
+    {children}
+    <div className="flex gap-x-2">
+      <UserButtonSkeleton />
+    </div>
+  </div>
+);

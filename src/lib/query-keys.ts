@@ -3,10 +3,11 @@ import { QueryClient } from "@tanstack/react-query";
 type QueryKey = string[];
 type QueryKeyValuePairs = { [key: string]: QueryKey[] };
 
+export const HomeQueryKey = ["home"];
 export const OrgsQueryKey = ["orgs"];
 
 export const queryKeyValuePairs: QueryKeyValuePairs = {
-  orgs: [OrgsQueryKey],
+  orgs: [HomeQueryKey, OrgsQueryKey],
 };
 
 export const invalidateQueryKeys = (

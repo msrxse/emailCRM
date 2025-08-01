@@ -6,6 +6,7 @@ import { authConfig } from "@/app/auth";
 
 import { AuthConfig, initAuthConfig } from "@hono/auth-js";
 
+import home from "./page-data/home";
 import test from "./test";
 import orgs from "./orgs";
 
@@ -40,7 +41,10 @@ app.use("*", async (c, next) => {
 
 app.use("*", initAuthConfig(getAuthConfig));
 
-const routes = app.route("/test", test).route("/orgs", orgs);
+const routes = app
+  .route("/home", home)
+  .route("/test", test)
+  .route("/orgs", orgs);
 
 export const GET = handle(app);
 export const POST = handle(app);

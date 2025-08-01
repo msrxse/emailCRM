@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 // import { Skeleton } from "@/components/ui/skeleton";
 import { CreditCard, Loader, LogOut } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export const UserButton = () => {
   const session = useSession();
@@ -55,3 +56,7 @@ export const UserButton = () => {
     </DropdownMenu>
   );
 };
+
+export const UserButtonSkeleton = () => (
+  <Skeleton className="rounded-full size-8 bg-white" />
+);
