@@ -1,8 +1,14 @@
 "use client";
 
 import { useGetHomeData } from "@/app/(platform)/home/_components/api/use-get-home-data";
-import { HomeAudienceSummaryCard } from "./home-audience-summary-card";
-import { HomeCampaignSummaryCard } from "./home-campaign-summary-card";
+import {
+  HomeAudienceSummaryCard,
+  HomeAudienceSummaryCardSkeleton,
+} from "./home-audience-summary-card";
+import {
+  HomeCampaignSummaryCard,
+  HomeCampaignSummaryCardSkeleton,
+} from "./home-campaign-summary-card";
 import {
   HomePlatformHeader,
   HomePlatformHeaderSkeleton,
@@ -15,6 +21,10 @@ export default function HomeContents() {
     return (
       <div className="flex flex-col h-full w-full md:pl-[300px]">
         <HomePlatformHeaderSkeleton />
+        <div className="flex flex-col gap-y-4 px-4 mt-8">
+          <HomeCampaignSummaryCardSkeleton />
+          <HomeAudienceSummaryCardSkeleton />
+        </div>
       </div>
     );
 

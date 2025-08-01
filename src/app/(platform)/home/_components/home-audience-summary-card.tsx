@@ -2,13 +2,12 @@
 
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export const HomeAudienceSummaryCard = () => {
   return (
@@ -33,9 +32,29 @@ export const HomeAudienceSummaryCard = () => {
           </div>
         </div>
       </CardContent>
-      {/* <CardFooter>
-        <p>Card Footer</p>
-      </CardFooter> */}
+    </Card>
+  );
+};
+
+export const HomeAudienceSummaryCardSkeleton = () => {
+  return (
+    <Card className="w-full">
+      <CardHeader>
+        <CardTitle>Audience Summary</CardTitle>
+        <CardDescription>Loading audience data...</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="flex flex-col gap-y-2">
+          <div className="flex justify-between">
+            <Skeleton className="w-1/2 h-6" />
+            <Skeleton className="w-1/4 h-6" />
+          </div>
+          <div className="flex justify-between">
+            <Skeleton className="w-1/2 h-6" />
+            <Skeleton className="w-1/4 h-6" />
+          </div>
+        </div>
+      </CardContent>
     </Card>
   );
 };

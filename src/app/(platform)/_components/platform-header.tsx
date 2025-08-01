@@ -21,7 +21,7 @@ export const PlatformHeaderSkeleton = ({
 }: {
   children: React.ReactNode;
 }) => (
-  <div className="flex h-14 items-center p-4 w-full">
+  <div className="flex h-14 border-b shadow-sm bg-white items-center px-4">
     {children}
     <div className="flex gap-x-2">
       <UserButtonSkeleton />
