@@ -5,9 +5,11 @@ type QueryKeyValuePairs = { [key: string]: QueryKey[] };
 
 export const HomeQueryKey = ["home"];
 export const OrgsQueryKey = ["orgs"];
+export const UserOrgsQueryKey = ["userOrgs"];
 
 export const queryKeyValuePairs: QueryKeyValuePairs = {
   orgs: [HomeQueryKey, OrgsQueryKey],
+  userOrgs: [HomeQueryKey, UserOrgsQueryKey],
 };
 
 export const invalidateQueryKeys = (

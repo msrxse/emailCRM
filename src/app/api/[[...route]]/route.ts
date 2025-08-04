@@ -9,6 +9,7 @@ import { AuthConfig, initAuthConfig } from "@hono/auth-js";
 import home from "./page-data/home";
 import test from "./test";
 import orgs from "./orgs";
+import userOrgs from "./user-orgs";
 
 const getAuthConfig = (c: Context): AuthConfig => ({
   ...authConfig,
@@ -42,6 +43,7 @@ app.use("*", async (c, next) => {
 app.use("*", initAuthConfig(getAuthConfig));
 
 const routes = app
+  .route("/user-orgs", userOrgs)
   .route("/home", home)
   .route("/test", test)
   .route("/orgs", orgs);

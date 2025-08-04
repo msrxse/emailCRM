@@ -44,3 +44,5 @@ export const UserOrgs = pgTable("user_orgs", {
     .primaryKey()
     .references(() => users.id, { onDelete: "cascade" }),
 });
+
+export const insertUserOrgsSchema = createInsertSchema(UserOrgs);

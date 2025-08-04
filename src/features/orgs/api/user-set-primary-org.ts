@@ -5,12 +5,16 @@ import {
 } from "@tanstack/react-query";
 import { InferRequestType, InferResponseType } from "hono";
 import { client } from "@/lib/hono";
-import { invalidateQueryKeys, OrgsQueryKey } from "@/lib/query-keys";
+import { invalidateQueryKeys, UserOrgsQueryKey } from "@/lib/query-keys";
 
-type RequestType = InferRequestType<typeof client.api.orgs.$post>["json"];
-type ResponseType = InferResponseType<typeof client.api.orgs.$post>;
+type RequestType = InferRequestType<
+  (typeof client.api)["user-orgs"]["$patch"]
+>["json"];
+type ResponseType = InferResponseType<
+  (typeof client.api)["user-orgs"]["$patch"]
+>;
 
-export const useCreateNewOrg = (): UseMutationResult<
+export const useSetPrimaryOrg = (): UseMutationResult<
   ResponseType,
   Error,
   RequestType
@@ -19,12 +23,12 @@ export const useCreateNewOrg = (): UseMutationResult<
 
   return useMutation<ResponseType, Error, RequestType>({
     mutationFn: async (json) => {
-      const response = await client.api.orgs.$post({ json });
+      const response = await client.api["user-orgs"]["$patch"]({ json });
       return await response.json();
     },
     onSuccess: () => {
       // Instead of manually giving queries here we use a helper function
-      return invalidateQueryKeys(OrgsQueryKey, queryClient);
+      return invalidateQueryKeys(UserOrgsQueryKey, queryClient);
     },
   });
 };
